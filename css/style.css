@@ -38,12 +38,12 @@ body{
   background-color: chartreuse;
 }
 
-/*TOP DELLA STRUTTURA*/
-.top-left-user{
+/*************TOP DELLA STRUTTURA***************/
+.top-left-user, .main-left{
   width: 35%;
 }
 
-.top-right-user{
+.top-right-user, .main-right{
   width: 65%;
 }
 
@@ -95,4 +95,47 @@ body{
   color: gray;
   font-size: 12px;
   font-weight: bold;
+}
+
+/*MAIN*/
+.main-left, .main-right{
+  height: 610px;
+}
+
+.main-left{
+  background-color: coral;
+}
+
+.main-right{
+  background-color: crimson;
+}
+
+/*************MAIN LEFT**************/
+/*Notifice*/
+.notifiche{
+  height: 75px;
+  width: 100%;
+  background-color: #8ddafc;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.notifiche i{
+  border-radius: 50%;
+  color: #8ddafc;
+  background-color: white;
+  font-size: 20px;
+  padding: 12px;
+  margin: 10px;
+}
+
+.notifiche .msg-notifiche p{
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.notifiche .msg-notifiche a{
+  font-size: 13px;
+  color: gray;
 }
