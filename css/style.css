@@ -19,6 +19,10 @@ body{
   float: left;
 }
 
+i{
+  cursor: pointer;
+}
+
 /*STRUTTURA ESTERNA*/
 .container{
   height: 100vh;
@@ -107,7 +111,7 @@ body{
 }
 
 .main-right{
-  background-color: crimson;
+  background-color: white;
 }
 
 /*************MAIN LEFT**************/
@@ -220,4 +224,40 @@ body{
   color: gray;
   font-size: 12px;
   font-weight: 500;
+}
+
+/*MAIN RIGHT*/
+.chat{
+  width: 98%;
+  height: calc(100% - 60px);
+  background-image: url(../img/mine.jpg);
+  padding: 30px 60px;
+}
+
+.area-msg{
+  height: 60px;
+  width: 100%;
+  background-color: #f3edea;
+  padding: 0 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.area-msg i{
+  color: #b0b0b1;
+  font-size: 25px;
+}
+
+.area-msg input{
+  width: 80%;
+  border: none;
+  line-height: 30px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  vertical-align: middle;
+}
+
+.area-msg i:last-of-type{
+  color: #6a7275;
 }
