@@ -45,7 +45,7 @@
               <img :src='contacts[activeUser].avatar' alt="">
               <div class="dati-user">
                 <h5>{{contacts[activeUser].name}}</h5>
-                <span>{{contacts[activeUser].messages.date}}</span>
+                <span v-for="(message, index) in contacts[activeUser].messages" v-if="(message.status == ['received'])">Ultimo accesso alle {{message.date}}</span>
               </div>
             </div>
 
@@ -53,7 +53,7 @@
               <img src="img/avatar_1.jpg" alt="">
               <div class="dati-user">
                 <h5>Michele</h5>
-                <span>10/01/2020 16:15:22</span>
+                <span>Ultimo accesso alle 10/01/2020 16:15:22</span>
               </div>
             </div>
   
@@ -107,13 +107,13 @@
 
                     <div class="last-msg">
                       <h5>{{contact.name}}</h5>
-                      <span>{{contact.date}}</span>
+                      <span v-for="(message, index) in contact.messages"  v-if="(message.status == ['received'])" >{{message.message}}</span>
                     </div>
 
                   </div>
 
                   <div class="user-list-right">
-                    <span></span>
+                    <span v-for="(message, index) in contact.messages"  v-if="(message.status == ['received'])" >{{message.date}}</span>
                   </div>
 
                 </div>
@@ -189,9 +189,26 @@
 
             <div v-if="activeUser >= 0" class="chat clearfix">
               
-              <div class="msg-right">Hai portato a spasso il cane?</div>
+              <div v-for="(message, index) in contacts[activeUser].messages" :class="'sent'" v-if="(message.status == ['sent'])" >
+                <p>{{message.message}}</p>
+                <span>{{message.date}}</span>
+              </div>
               
-              <div class="msg-left">Tutto fatto</div>
+              <div v-for="(message, index) in contacts[activeUser].messages" :class="'received'" v-if="(message.status == ['received'])" >
+                <p>
+                  {{message.message}}
+                </p>
+                <span>{{message.date}}</span>
+              </div>
+              
+
+            </div>
+
+            <div v-else="" class="chat clearfix">
+              
+              <div class="sent">Hai portato a spasso il cane?</div>
+              
+              <div class="received">Tutto fatto</div>
 
             </div>
 

@@ -263,21 +263,39 @@ i{
 }
 
 /******AREA MSG**********/
-.msg-left{
+.received{
+  width: 45%;
   background-color: #fefefe;
   float: left;
   clear: both;
   border-radius: 5px;
   padding: 15px 20px;
   margin-bottom: 20px;
+  position: relative;
 }
 
-.msg-right{
+.received span{
+  position: absolute;
+  right: 10px;
+  font-size: 10px;
+  color: gray;
+}
+
+.sent{
+  width: 45%;
   background-color: #d4f8ba;
   border-radius: 10px;
   float: right;
   clear: both;
   padding: 15px 20px;
   margin-bottom: 20px;
+  position: relative;
+}
+
+.sent span{
+  position: absolute;
+  right: 10px;
+  font-size: 10px;
+  color: gray;
 }
 
