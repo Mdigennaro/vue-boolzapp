@@ -41,11 +41,19 @@
   
           <div class="top-right-user float-left ">
   
-            <div class="top-user-chat-left">
-              <img src="img/avatar_1.jpg" alt="profilo 1">
+            <div v-if="activeUser >= 0" class="top-user-chat-left">
+              <img :src='contacts[activeUser].avatar' alt="">
+              <div class="dati-user">
+                <h5>{{contacts[activeUser].name}}</h5>
+                <span>{{contacts[activeUser].messages.date}}</span>
+              </div>
+            </div>
+
+            <div v-else="" class="top-user-chat-left">
+              <img src="img/avatar_1.jpg" alt="">
               <div class="dati-user">
                 <h5>Michele</h5>
-                <span>Ultimo accesso oggi alle 10/01/2020 16:15:22</span>
+                <span>10/01/2020 16:15:22</span>
               </div>
             </div>
   
@@ -91,21 +99,21 @@
               <!--LISTA UTENTI-->
               <div class="user-list">
 
-                <div v-for="user in users" class="user">
+                <div @click="showName(index)" v-for="(contact, index) in contacts" class="user">
 
-                  <div class="user-list-left">
+                  <div  class="user-list-left">
 
-                    <img :src="user.img" alt="user 1">
+                    <img :src='contact.avatar' alt="">
 
                     <div class="last-msg">
-                      <h5>{{user.nome}}</h5>
-                      <span>{{user.msg}}</span>
+                      <h5>{{contact.name}}</h5>
+                      <span>{{contact.date}}</span>
                     </div>
 
                   </div>
 
                   <div class="user-list-right">
-                    <span>{{user.ultimoAccesso}}</span>
+                    <span></span>
                   </div>
 
                 </div>
@@ -179,9 +187,11 @@
           <!--MAIN RIGHT-->
           <div class="main-right float-left">
 
-            <div class="chat">
-
+            <div v-if="activeUser >= 0" class="chat clearfix">
               
+              <div class="msg-right">Hai portato a spasso il cane?</div>
+              
+              <div class="msg-left">Tutto fatto</div>
 
             </div>
 

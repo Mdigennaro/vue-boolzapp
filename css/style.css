@@ -198,7 +198,7 @@ i{
   border-bottom: 1px solid #e8eaea;
 }
 
-.user.active{
+.active{
   background-color: #e8eaea;
 }
 
@@ -228,10 +228,10 @@ i{
 
 /*MAIN RIGHT*/
 .chat{
-  width: 98%;
   height: calc(100% - 60px);
   background-image: url(../img/mine.jpg);
   padding: 30px 60px;
+  overflow-y: auto;
 }
 
 .area-msg{
@@ -261,3 +261,23 @@ i{
 .area-msg i:last-of-type{
   color: #6a7275;
 }
+
+/******AREA MSG**********/
+.msg-left{
+  background-color: #fefefe;
+  float: left;
+  clear: both;
+  border-radius: 5px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+}
+
+.msg-right{
+  background-color: #d4f8ba;
+  border-radius: 10px;
+  float: right;
+  clear: both;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+}
+
