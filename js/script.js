@@ -117,14 +117,19 @@ const app = new Vue({
       this.contacts[this.activeUser].messages.push(newMsg);
       this.messaggioUser='';
 
-      const answerMsg={
-        message: this.answerUser,
-        status:'received',
-      }
+      
+    },
 
-      this.contacts[this.activeUser].messages.push(answerMsg).setTimeout(2000);
-
-    }
-  }
+    insertAnswer() {
+      setTimeout(() => {
+        const answerMsg={
+          message: this.answerUser,
+          status:'received',
+        }
   
+        this.contacts[this.activeUser].messages.push(answerMsg);
+      }, 1000);
+
+    },
+  }
 })
