@@ -88,7 +88,23 @@ const app = new Vue({
     showName(index){
       console.log('utente attivo', index);
       this.activeUser = index;
+    },
 
-    }
+    lastMsgs(index){
+      let lastMsg = this.contacts[index].messages[this.contacts[index].messages.length - 1].message;
+
+      if (lastMsg.length > 20) {
+        lastMsg = lastMsg.substr(0,20) + '...';
+      }
+      return lastMsg;
+    },
+
+    lastDates(index){
+      let lastDate = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
+
+      return lastDate;
+    },
   }
+
+  
 })

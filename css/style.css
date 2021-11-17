@@ -36,7 +36,7 @@ i{
 
 /*STRUTTURA INTERNA*/
 .box{
-  min-width: 800px;
+  min-width: 950px;
   width: 85%;
   height: 670px;
   background-color: chartreuse;
