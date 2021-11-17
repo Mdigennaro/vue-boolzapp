@@ -80,8 +80,11 @@ const app = new Vue({
         }],
       },
     ],
+    
+    messaggioUser:'',
+    answerUser:'ok',
 
-    activeUser: -1
+    activeUser: 0,
   },
 
   methods:{
@@ -104,7 +107,24 @@ const app = new Vue({
 
       return lastDate;
     },
-  }
 
+    insertMsg(){
+      const newMsg= {
+        message: this.messaggioUser,
+        status: 'sent',
+      }
+
+      this.contacts[this.activeUser].messages.push(newMsg);
+      this.messaggioUser='';
+
+      const answerMsg={
+        message: this.answerUser,
+        status:'received',
+      }
+
+      this.contacts[this.activeUser].messages.push(answerMsg).setTimeout(2000);
+
+    }
+  }
   
 })

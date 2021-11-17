@@ -49,10 +49,10 @@
               </div>
             </div>
 
-            <div v-else="" class="top-user-chat-left">
-              <img src="img/avatar_1.jpg" alt="">
+            <div v-else="active = 0" class="top-user-chat-left">
+              <img :src='contacts.avatar' alt="">
               <div class="dati-user">
-                <h5>Michele</h5>
+                <h5>{{contacts.name}}</h5>
                 <span>Ultimo accesso alle 10/01/2020 16:15:22</span>
               </div>
             </div>
@@ -209,7 +209,11 @@
 
               <i class="far fa-smile"></i>
 
-              <input type="text" placeholder="Scrivi un messaggio">
+              <input 
+              @keyup.enter="insertMsg()"
+              v-model.trim="messaggioUser"
+              type="text" 
+              placeholder="Scrivi un messaggio">
 
               <i class="fas fa-microphone"></i>
 
