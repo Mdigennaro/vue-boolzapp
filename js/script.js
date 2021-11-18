@@ -84,16 +84,19 @@ const app = new Vue({
     
     messaggioUser:'',
     answerUser:'ok',
+    searchUser:'',
     
     activeUser: 0,
   },
   
   methods:{
+    //Ricavo l'utente attivo
     showName(index){
       console.log('utente attivo', index);
       this.activeUser = index;
     },
     
+    //Ricavo il contenuto dell'ultimo messaggio
     lastMsgs(index){
       let lastMsg = this.contacts[index].messages[this.contacts[index].messages.length - 1].message;
       
@@ -103,25 +106,30 @@ const app = new Vue({
       return lastMsg;
     },
     
+     //Ricavo la data dell'ultimo messaggio
     lastDates(index){
       let lastDate = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
       
       return lastDate;
     },
     
+    //inserisco il contenuto dell'input nella chat
     insertMsg(){
-      
       if (this.messaggioUser.length >= 1) {
-        
+
+        //creo l'oggetto dove inserire l'input
         const newMsg= {
           date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
           message: this.messaggioUser,
           status: 'sent',
         }
         
+        //Pusho il contenuto dell'input nell'array di oggetti in modo da poterlo vedere
         this.contacts[this.activeUser].messages.push(newMsg);
+        //svuoto la stringa dopo aver inserito il contenuto
         this.messaggioUser='';
         
+        //creo la risposta automatica ritardando di un secondo la visualizzazione su schermo
         setTimeout(() => {
           const answerMsg={
             date: dayjs().format("DD/MM/YYYY HH:mm:ss"),  
@@ -134,7 +142,17 @@ const app = new Vue({
         
       }
     },
+
     
+  },
+
+  //creo la funzione che mi filtra i contatti guardando  le lettere inserite nell'input se sono incluse nei nomi dei contatti
+  computed:{
+    filteredUser: function(){
+      return this.contacts.filter((contact)=>{
+        return contact.name.toLowerCase().includes(this.searchUser.toLowerCase());
+      });
+    },
   }
 })
 

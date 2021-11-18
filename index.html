@@ -24,11 +24,13 @@
 
         <!--TOP BOX-->
         <div class="top clearfix">
+
+          <!--Profilo personale-->
           <div class="top-left-user float-left">
 
             <div class="my-user-left">
               <img src="img/avatar_io.jpg" alt="Mio profilo">
-            <h4>Nome Utente</h4>
+              <h4>Nome Utente</h4>
             </div>
   
             <div class="my-user-right">
@@ -38,33 +40,25 @@
             </div>
             
           </div>
+          <!--/Profilo personale-->
   
+          <!--Utente attivo viene visto nella barra superiore-->
           <div class="top-right-user float-left ">
-  
+
             <div v-if="activeUser >= 0" 
               class="top-user-chat-left">
+
               <img :src='contacts[activeUser].avatar' alt="">
               <div class="dati-user">
                 <h5>{{contacts[activeUser].name}}</h5>
                 <span>Ultimo accesso alle {{lastDates(activeUser)}}</span>
               </div>
-            </div>
 
-            <div v-else="active = 0" class="top-user-chat-left">
-              <img :src='contacts.avatar' alt="">
-              <div class="dati-user">
-                <h5>{{contacts.name}}</h5>
-                <span>{{lastDates(index)}}</span>
-              </div>
-            </div>
-  
-            <div class="top-user-chat-right">
-              <i class="fas fa-search"></i>
-              <i class="fas fa-paperclip"></i>
-              <i class="fas fa-ellipsis-v"></i>
             </div>
   
           </div>
+          <!--/Utente attivo viene visto nella barra superiore-->
+
         </div>
         <!--/TOP BOX-->
 
@@ -92,16 +86,21 @@
               
               <!--BARRA DI RICERCA UTENTE-->
               <div class="search-user">
+
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Cerca o inizia una nuova chat">
+                <input 
+                v-model="searchUser"
+                type="text" 
+                placeholder="Cerca o inizia una nuova chat">
+
               </div>
-               <!--BARRA DI RICERCA UTENTE-->
+              <!--/BARRA DI RICERCA UTENTE-->
 
               <!--LISTA UTENTI-->
-              <div class="user-list">
+              <div class="user-list clearfix">
 
                 <div @click="showName(index)" 
-                v-for="(contact, index) in contacts" 
+                v-for="(contact, index) in filteredUser" 
                 class="user"
                 :class="{'active' : activeUser === index}">
 
@@ -182,33 +181,29 @@
                 -->
                 
               </div>
+              <!--/LISTA UTENTI-->
 
             </section>
+            <!--/UTENTI-->
 
           </div>
-          <!--MAIN LEFT-->
+          <!--/MAIN LEFT-->
 
           <!--MAIN RIGHT-->
           <div class="main-right float-left">
 
             <div v-if="activeUser >= 0" class="chat clearfix">
               
-              <div v-for="(message, index) in contacts[activeUser].messages" :class="message.status" >
+              <div v-for="(message, index) in contacts[activeUser].messages" 
+              :class="message.status" >
+
                 <p>{{message.message}}</p>
                 <span>{{message.date}}</span>
+
               </div>
-              
 
             </div>
-
-            <div v-else="" class="chat clearfix">
-              
-              <div class="sent">Hai portato a spasso il cane?</div>
-              
-              <div class="received">Tutto fatto</div>
-
-            </div>
-
+            <!--FOOTER MAIN RIGHT-->
             <div class="area-msg">
 
               <i class="far fa-smile"></i>
@@ -222,19 +217,17 @@
               <i class="fas fa-microphone"></i>
 
             </div>
+            <!--/FOOTER MAIN RIGHT-->
 
           </div>
+          <!--/MAIN RIGHT-->
 
         </div>
-
       </div>
-
     </div>
-
   </div>
   
   <!--SCRIPT-->
-
   <!--DAYS JS-->
 
   <!--DAYS JS CORE-->
@@ -243,7 +236,7 @@
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/customParseFormat.js"></script>
   <!--/Days JS CORE-->
 
-
+  <!--VUE-->
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script src="js/script.js"></script>
 
