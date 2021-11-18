@@ -41,7 +41,8 @@
   
           <div class="top-right-user float-left ">
   
-            <div v-if="activeUser >= 0" class="top-user-chat-left">
+            <div v-if="activeUser >= 0" 
+              class="top-user-chat-left">
               <img :src='contacts[activeUser].avatar' alt="">
               <div class="dati-user">
                 <h5>{{contacts[activeUser].name}}</h5>
@@ -99,7 +100,10 @@
               <!--LISTA UTENTI-->
               <div class="user-list">
 
-                <div @click="showName(index)" v-for="(contact, index) in contacts" class="user">
+                <div @click="showName(index)" 
+                v-for="(contact, index) in contacts" 
+                class="user"
+                :class="{'active' : activeUser === index}">
 
                   <div  class="user-list-left">
 
@@ -210,8 +214,8 @@
               <i class="far fa-smile"></i>
 
               <input 
-              @keyup.enter="insertMsg(), insertAnswer()"
-              v-model.trim="messaggioUser"
+              @keyup.enter="insertMsg()"
+              v-model="messaggioUser"
               type="text" 
               placeholder="Scrivi un messaggio">
 
@@ -228,10 +232,21 @@
     </div>
 
   </div>
-
+  
   <!--SCRIPT-->
+
+  <!--DAYS JS-->
+
+  <!--DAYS JS CORE-->
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
+  <!--DAYS JS customParseFormat-->
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/customParseFormat.js"></script>
+  <!--/Days JS CORE-->
+
+
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script src="js/script.js"></script>
+
 
 </body>
 </html>

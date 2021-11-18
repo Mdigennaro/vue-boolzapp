@@ -198,6 +198,10 @@ i{
   border-bottom: 1px solid #e8eaea;
 }
 
+.user:hover{
+  background-color: rgb(241, 241, 241);
+}
+
 .active{
   background-color: #e8eaea;
 }

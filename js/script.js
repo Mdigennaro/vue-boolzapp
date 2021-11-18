@@ -1,7 +1,8 @@
+
 const app = new Vue({
-
+  
   el:'#app',
-
+  
   data:{
     contacts: [
       {
@@ -83,53 +84,62 @@ const app = new Vue({
     
     messaggioUser:'',
     answerUser:'ok',
-
+    
     activeUser: 0,
   },
-
+  
   methods:{
     showName(index){
       console.log('utente attivo', index);
       this.activeUser = index;
     },
-
+    
     lastMsgs(index){
       let lastMsg = this.contacts[index].messages[this.contacts[index].messages.length - 1].message;
-
+      
       if (lastMsg.length > 20) {
         lastMsg = lastMsg.substr(0,20) + '...';
       }
       return lastMsg;
     },
-
+    
     lastDates(index){
       let lastDate = this.contacts[index].messages[this.contacts[index].messages.length - 1].date;
-
+      
       return lastDate;
     },
-
+    
     insertMsg(){
-      const newMsg= {
-        message: this.messaggioUser,
-        status: 'sent',
-      }
-
-      this.contacts[this.activeUser].messages.push(newMsg);
-      this.messaggioUser='';
-
       
-    },
-
-    insertAnswer() {
-      setTimeout(() => {
-        const answerMsg={
-          message: this.answerUser,
-          status:'received',
+      if (this.messaggioUser.length >= 1) {
+        
+        const newMsg= {
+          date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+          message: this.messaggioUser,
+          status: 'sent',
         }
-  
-        this.contacts[this.activeUser].messages.push(answerMsg);
-      }, 1000);
-
+        
+        this.contacts[this.activeUser].messages.push(newMsg);
+        this.messaggioUser='';
+        
+        setTimeout(() => {
+          const answerMsg={
+            date: dayjs().format("DD/MM/YYYY HH:mm:ss"),  
+            message: this.answerUser,
+            status:'received',
+          }
+          
+          this.contacts[this.activeUser].messages.push(answerMsg);
+        }, 1000);
+        
+      }
     },
+    
   }
 })
+
+
+//PLUG IN
+dayjs.extend(window.dayjs_plugin_customParseFormat);
+
+
