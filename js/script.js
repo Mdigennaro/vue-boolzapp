@@ -85,11 +85,32 @@ const app = new Vue({
     messaggioUser:'',
     answerUser:'ok',
     searchUser:'',
-    
     activeUser: 0,
   },
   
   methods:{
+    filterContacts() {
+      console.log('stiamo facenoe partire il filtro');
+      for(contact in this.contacts){
+
+        let nome = this.contacts[contact].name;
+
+        let nomeLower = this.contacts[contact].name.toLowerCase();
+
+        let nomeUpper = this.contacts[contact].name.toUpperCase();
+
+        this.contacts[contact].visible = false;
+
+        if(nomeLower.includes(this.searchUser)||
+        nome.includes(this.searchUser) || nomeUpper.includes(this.searchUser)){
+
+          this.contacts[contact].visible = true;
+
+        }
+      }
+        
+    },
+
     //Ricavo l'utente attivo
     showName(index){
       console.log('utente attivo', index);
@@ -146,15 +167,6 @@ const app = new Vue({
     
   },
 
-  //creo la funzione che mi filtra i contatti guardando  le lettere inserite nell'input se sono incluse nei nomi dei contatti
-  computed:{
-
-    filteredUser: function(){
-      return this.contacts.filter((contact)=>{
-        return contact.name.toLowerCase().includes(this.searchUser.toLowerCase());
-      });
-    },
-  }
 })
 
 
